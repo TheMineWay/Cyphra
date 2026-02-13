@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { MailGrant } from "./mail-grant.entity";
 
 @Entity()
 export class User {
@@ -10,4 +11,8 @@ export class User {
 
     @Column("varchar")
     key: string;
+
+    // Relations
+    @OneToMany(() => MailGrant, (mailGrant) => mailGrant.userId)
+    grants: MailGrant[];
 }
